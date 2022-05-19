@@ -1,0 +1,22 @@
+{% extends "table.html" %}
+
+{% block table_content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Depot Label</th>
+            <th>Address</th>
+            <th>Operations</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.depot_label }}</td>
+                <td>{{ row.depot_address }}</td>
+                <td>
+                    <a href="{{ url_for('depots.delete', id=row.depot_id) }}">Delete</a>
+                    <br>
+                    <a href="{{ url_for('depots.edit', id=row.depot_id) }}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

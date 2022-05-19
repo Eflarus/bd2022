@@ -1,0 +1,24 @@
+{% extends "table.html" %}
+
+{% block table_content %}
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Operations</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.reciever_id }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.surname }}</td>
+                <td>
+                    <a href="{{ url_for('stuff.delete', id=row.reciever_id) }}">Delete</a>
+                    <br>
+                    <a href="{{ url_for('stuff.edit', id=row.reciever_id) }}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

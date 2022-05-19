@@ -1,0 +1,26 @@
+{% extends "table.html" %}
+
+{% block table_content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Reg Date</th>
+            <th>Operations</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.username }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.roles }}</td>
+                <td>{{ row.created_at.date() }}</td>
+                <td>
+                    <a href="{{ url_for('admin.delete', id=row.id) }}">Delete</a>
+                    <br>
+                    <a href="{{ url_for('admin.edit', id=row.id) }}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

@@ -1,0 +1,30 @@
+{% extends "table.html" %}
+
+{% block table_content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Good Label</th>
+            <th>Code</th>
+            <th>Vendor</th>
+            <th>Depot</th>
+            <th>Trade Price</th>
+            <th>In Stock</th>
+            <th>Operations</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.good_label }}</td>
+                <td>{{ row.good_code }}</td>
+                <td>{{ row.vendor_label }}</td>
+                <td>{{ row.depot_label }}</td>
+                <td>{{ row.depot_tprice }}</td>
+                <td>{{ row.in_stock }}</td>
+                <td>
+                    <a href="{{ url_for('stock.delete', gid=row.good_id, did=row.depot_id) }}">Delete</a>
+                    <br>
+                    <a href="{{ url_for('stock.edit', gid=row.good_id, did=row.depot_id) }}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

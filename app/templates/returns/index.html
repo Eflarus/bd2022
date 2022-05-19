@@ -1,0 +1,33 @@
+{% extends "table.html" %}
+{% block table_content %}
+    <table class="table table-striped">
+        <tr>
+            <th>Return №</th>
+            <th>Invoice №</th>
+            <th>Good Label</th>
+            <th>Vendor</th>
+            <th>Depot</th>
+            <th>Quantity</th>
+            <th>Store</th>
+            <th>Returned by</th>
+            <th>Return Date</th>
+            <th>Operations</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.ReturnAct.return_id }}</td>
+                <td>{{ row.ReturnAct.invoice_id }}</td>
+                <td>{{ row.Good.good_label }}</td>
+                <td>{{ row.Vendor.vendor_label }}</td>
+                <td>{{ row.Depot.depot_label }}</td>
+                <td>{{ row.ReturnAct.return_quantity }}</td>
+                <td>{{ row.Store.store_label }}</td>
+                <td>{{ row.Reciever.surname+' '+row.Reciever.name+' (id:'+row.Reciever.reciever_id|string+')' }}</td>
+                <td>{{ row.ReturnAct.returned_at.date() }}</td>
+                <td>
+                    <a href="{{ url_for('returns.delete', id=row.ReturnAct.return_id) }}">Delete</a>                    
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
